@@ -5,6 +5,7 @@ import Input from "../../../shared/components/inputs/input/input";
 import Button from "../../../shared/components/buttons/button/Button";
 import { useRequests } from "../../../shared/hooks/useRequests";
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
+import { UserType } from "../types/UserType";
 
 
 const LoginScreen = () => {
@@ -21,13 +22,14 @@ const LoginScreen = () => {
     setPassword(event.target.value);
   }
 
-  const handleLogin = () => {
-    setAccessToken('novo Token')
-    postRequest("http://localhost:8080/auth",
+  const handleLogin = async () => {
+    const user = await postRequest<UserType>("http://localhost:8080/auth",
     {
       email:email,
       password: password,
     });
+
+    setAccessToken(user?.accessToken || '');
   };
 
   return (
