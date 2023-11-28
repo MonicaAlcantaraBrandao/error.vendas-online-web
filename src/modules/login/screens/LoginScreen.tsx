@@ -4,9 +4,11 @@ import SVGLogo from "../../../shared/components/icons/SVGLogo";
 import Input from "../../../shared/components/inputs/input/input";
 import Button from "../../../shared/components/buttons/button/Button";
 import { useRequests } from "../../../shared/hooks/useRequests";
+import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 
 
 const LoginScreen = () => {
+  const {accessToken, setAccessToken} = useGlobalContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { postRequest, loading } = useRequests();
@@ -20,6 +22,7 @@ const LoginScreen = () => {
   }
 
   const handleLogin = () => {
+    setAccessToken('novo Token')
     postRequest("http://localhost:8080/auth",
     {
       email:email,
@@ -33,7 +36,9 @@ const LoginScreen = () => {
         <ContainerLogin>
             <LimitedContainer>
             <SVGLogo/>
-            <TitleLogin level={2} type='secondary'>LOGIN</TitleLogin>
+            <TitleLogin level={2} type='secondary'>
+              LOGIN ({accessToken})
+              </TitleLogin>
             <Input margin="32px 0px 0px" title="USUÁRIO:" onChange={handleEmail} value={email}/>
             <Input type="password" margin="32px 0px 0px" title="SENHA:" onChange={handlePassword} value={password}/>
             <Button loading={loading} type="primary" margin="64px 0px 16px 0px" onClick={handleLogin} >ENTRAR</Button>

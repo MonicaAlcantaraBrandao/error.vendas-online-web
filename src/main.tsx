@@ -8,6 +8,7 @@ import {
   RouterProvider, createBrowserRouter,
 } from "react-router-dom";
 import { loginRoutes } from './modules/login/routes';
+import { GlobalProvider } from './shared/hooks/useGlobalContext';
 
 const mainRoutes:RouteObject[] = [
   {
@@ -23,6 +24,8 @@ const router:RemixRouter = createBrowserRouter([...loginRoutes,
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <GlobalProvider>
     <RouterProvider router={router} />
+    </GlobalProvider>
   </React.StrictMode>,
 );
