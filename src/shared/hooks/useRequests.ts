@@ -12,7 +12,7 @@ import { AuthType } from "../../modules/login/types/AuthType";
 export const useRequests = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const { setNotification } = useGlobalContext()
+    const { setNotification, setUser } = useGlobalContext()
 
     const getRequest = async (url: string) => {
         setLoading(true);
@@ -38,11 +38,11 @@ export const useRequests = () => {
 
         const returnData = await ConnectionAPIPost<T>(url, body)
           .then((result) => {
-            setNotification('Entrando...', 'success', 'aguarde')
+            setNotification('Entrando...', 'success', 'aguarde');
             return result;
           })
           .catch((error: Error) => {
-            setNotification(error.message, 'error')
+            setNotification(error.message, 'error');
             return undefined;
         });
 
@@ -56,13 +56,13 @@ export const useRequests = () => {
 
         await ConnectionAPIPost<AuthType>(URL_AUTH, body)
           .then((result) => {
-            setNotification('Entrando...', 'success', 'aguarde')
-            setAuthorizationToken(result.accessToken)
-            navigate(ProductRoutesEnum.PRODUCT)
+            setUser(result.user);
+            setAuthorizationToken(result.accessToken);
+            navigate(ProductRoutesEnum.PRODUCT);
             return result;
           })
           .catch(() => {
-            setNotification(ERROR_INVALID_PASSWORD, 'error')
+            setNotification(ERROR_INVALID_PASSWORD, 'error');
             return undefined;
         });
 
