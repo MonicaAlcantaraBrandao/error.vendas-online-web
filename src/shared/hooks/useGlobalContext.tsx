@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+
 import { UserType } from "../../modules/login/types/UserType";
 
 type NotificationType = "success" | "info" | "warning" | "error";

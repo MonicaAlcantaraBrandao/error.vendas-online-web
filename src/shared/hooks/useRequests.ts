@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useGlobalContext } from "./useGlobalContext";
+import { useNavigate } from "react-router-dom";
+
+import { AuthType } from "../../modules/login/types/AuthType";
+import { ProductRoutesEnum } from "../../modules/product/routes";
+import { ERROR_INVALID_PASSWORD } from "../constants/errorStatus";
+import { URL_AUTH } from "../constants/urls";
+import { setAuthorizationToken } from "../functions/connection/auth";
 import ConnectionAPI, {
   ConnectionAPIPost,
   MethodType,
 } from "../functions/connection/connectionAPI";
-import { URL_AUTH } from "../constants/urls";
-import { ERROR_INVALID_PASSWORD } from "../constants/errorStatus";
-import { useNavigate } from "react-router-dom";
-import { ProductRoutesEnum } from "../../modules/product/routes";
-import { setAuthorizationToken } from "../functions/connection/auth";
-import { AuthType } from "../../modules/login/types/AuthType";
+import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
@@ -44,27 +45,6 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const postRequest = async <T>(
-    url: string,
-    body: unknown
-  ): Promise<T | undefined> => {
-    setLoading(true);
-
-    const returnData = await ConnectionAPIPost<T>(url, body)
-      .then((result) => {
-        setNotification("Entrando...", "success", "aguarde");
-        return result;
-      })
-      .catch((error: Error) => {
-        setNotification(error.message, "error");
-        return undefined;
-      });
-
-    setLoading(false);
-
-    return returnData;
-  };
-
   const authRequest = async (body: unknown): Promise<void> => {
     setLoading(true);
 
@@ -86,7 +66,6 @@ export const useRequests = () => {
   return {
     loading,
     request,
-    postRequest,
     authRequest,
   };
 };

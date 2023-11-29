@@ -1,15 +1,16 @@
 import type { Router as RemixRouter } from "@remix-run/router";
 import {
+  createBrowserRouter,
   RouteObject,
   RouterProvider,
-  createBrowserRouter,
 } from "react-router-dom";
-import { loginRoutes } from "./modules/login/routes";
-import { useNotification } from "./shared/hooks/useNotification";
+
 import { firstScreenRoutes } from "./modules/firstScreen/routes";
+import { loginRoutes } from "./modules/login/routes";
 import { productScreens } from "./modules/product/routes";
-import { useGlobalContext } from "./shared/hooks/useGlobalContext";
 import { verifyLoggedIn } from "./shared/functions/connection/auth";
+import { useGlobalContext } from "./shared/hooks/useGlobalContext";
+import { useNotification } from "./shared/hooks/useNotification";
 
 function App() {
   const { contextHolder } = useNotification();

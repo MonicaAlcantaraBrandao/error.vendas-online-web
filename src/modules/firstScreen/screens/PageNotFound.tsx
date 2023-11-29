@@ -1,8 +1,9 @@
 import { Result } from "antd";
-import Button from "../../../shared/components/buttons/button/Button";
-import { ContainerPageNotFound } from "./styles/pageNotFound.styles";
 import { useNavigate } from "react-router-dom";
+
+import Button from "../../../shared/components/buttons/button/Button";
 import { LoginRoutesEnum } from "../../login/routes";
+import { ContainerPageNotFound } from "./styles/pageNotFound.styles";
 
 const PageNotFound = () => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import { RouteObject } from "react-router-dom";
+
 import Product from "./screens/product";
 
 export enum ProductRoutesEnum {

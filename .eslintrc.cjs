@@ -47,11 +47,11 @@ module.exports = {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
   },
-  'react/function-component-definition': [
+  "react/function-component-definition": [
     2,
     {
-      namedComponents: ['arrow-function', 'function-declaration'],
-      unnamedComponents: 'arrow-function',
+      namedComponents: ["arrow-function", "function-declaration"],
+      unnamedComponents: "arrow-function",
     },
   ],
 };
