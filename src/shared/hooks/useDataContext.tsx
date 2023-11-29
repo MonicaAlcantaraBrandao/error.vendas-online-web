@@ -33,11 +33,11 @@ export const useDataContext = () => {
     setData({
       ...data,
       products,
-    })
-  }
+    });
+  };
 
   return {
     products: data?.products || [],
-   setProducts,
+    setProducts,
   };
 };
