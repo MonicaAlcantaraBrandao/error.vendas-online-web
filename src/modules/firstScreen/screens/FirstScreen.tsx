@@ -5,16 +5,16 @@ import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 import { ProductRoutesEnum } from "../../product/routes";
 
 const FirstScreen = () => {
-    const { user } = useGlobalContext();
-    const navigate = useNavigate();
+  const { user } = useGlobalContext();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (user) {
-            navigate(ProductRoutesEnum.PRODUCT)
-        }
-    }, []);
+  useEffect(() => {
+    if (user) {
+      navigate(ProductRoutesEnum.PRODUCT);
+    }
+  }, []);
 
-    return <Spin />
-}
+  return <Spin />;
+};
 
 export default FirstScreen;
