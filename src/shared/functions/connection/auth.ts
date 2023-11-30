@@ -1,7 +1,8 @@
 import { UserType } from "../../../modules/login/types/UserType";
 import { AUTHORIZATION_KEY } from "../../constants/authorizationConstants";
 import { URL_USER } from "../../constants/urls";
-import { ConnectionAPIGet } from "./connectionAPI";
+import { connectionAPIGet } from "./connectionAPI";
+
 import {
   getItemStorage,
   removeItemStorage,
@@ -21,11 +22,10 @@ export const getAuthorizationToken = () => getItemStorage(AUTHORIZATION_KEY);
 
 export const verifyLoggedIn = async () => {
   const token = getAuthorizationToken();
-
   if (!token) {
     location.href = "/login";
   }
-  await ConnectionAPIGet<UserType>(URL_USER).catch(() => {
+  await connectionAPIGet<UserType>(URL_USER).catch(() => {
     unsetAuthorizationToken();
     location.href = "/login";
   });

@@ -16,7 +16,7 @@ const columns: ColumnsType<ProductType> = [
     title: "Id",
     dataIndex: "id",
     key: "id",
-    render: (_, product) => <TooltipImage product={product}/>
+    render: (_, product) => <TooltipImage product={product} />,
   },
   {
     title: "Nome",
@@ -28,7 +28,7 @@ const columns: ColumnsType<ProductType> = [
     title: "Categoria",
     dataIndex: "category",
     key: "category",
-    render: (_, product) => <CategoryColumn category={product.category}/>,
+    render: (_, product) => <CategoryColumn category={product.category} />,
   },
   {
     title: "Preço",

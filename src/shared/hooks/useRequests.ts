@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthType } from "../../modules/login/types/AuthType";
 import { ProductRoutesEnum } from "../../modules/product/routes";
-import { ERROR_INVALID_PASSWORD } from "../constants/errorStatus";
 import { URL_AUTH } from "../constants/urls";
 import { setAuthorizationToken } from "../functions/connection/auth";
 import ConnectionAPI, {
-  ConnectionAPIPost,
   MethodType,
+  connectionAPIPost,
 } from "../functions/connection/connectionAPI";
 import { useGlobalContext } from "./useGlobalContext";
+import { ERROR_INVALID_PASSWORD } from "../constants/errorStatus";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
@@ -39,6 +39,7 @@ export const useRequests = () => {
         setNotification(error.message, "error");
         return undefined;
       });
+
     setLoading(false);
 
     return returnObject;
@@ -48,7 +49,7 @@ export const useRequests = () => {
     const navigate = useNavigate();
     setLoading(true);
 
-    await ConnectionAPIPost<AuthType>(URL_AUTH, body)
+    await connectionAPIPost<AuthType>(URL_AUTH, body)
       .then((result) => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
@@ -65,7 +66,7 @@ export const useRequests = () => {
 
   return {
     loading,
-    request,
     authRequest,
+    request,
   };
 };
